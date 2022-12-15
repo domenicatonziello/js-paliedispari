@@ -33,7 +33,12 @@ form.addEventListener('submit', function(event){
     event.preventDefault();
     // prendo value dell'input
     const userWord = userText.value.trim().toLowerCase();
-    // assegno funzione alla parola
-    const wordPalindroma = isPalindroma(userWord);
-    console.log(wordPalindroma);
+    // validazione
+    if (userWord){
+        // assegno funzione alla parola
+        const wordPalindroma = isPalindroma(userWord);
+        console.log(wordPalindroma);
+    } else {
+        alert('Il testo inserito non è valido');
+    }
 });
