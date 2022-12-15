@@ -11,12 +11,11 @@ function randomNumber (min = 1, max = 5){
     const nRandom = Math.floor(Math.random() * (max + 1 - min) + min);
     return nRandom;
 }
-const nRandom = randomNumber();
-console.log(nRandom);
+
 
 // Uso una funzione per stabilire se la somma è pari o dispari
 function getEvenOrOdd (number){
-    const message = number % 2 === 0 ? "E' PARI!" : "E' DISPARI!";
+    const message = number % 2 === 0 ? "Pari" : "Dispari";
     return message;
 }
 
@@ -26,7 +25,7 @@ const select = document.getElementById('even-or-odd');
 const number = document.getElementById('number');
 const button = document.getElementById('btn');
 const result = document.getElementById('result');
-
+const numberRandom = document.getElementById('random-number');
 
 // Aggiungo event listener al form
 form.addEventListener ('submit', function(event){
@@ -34,16 +33,24 @@ form.addEventListener ('submit', function(event){
     event.preventDefault();
     // prendo valori degli input
     const userChoise = select.value;
-    const userNumber = parseInt(number.value);
-    console.log('select:' + userChoise + 'user number:' + userNumber);
+    const userNumber = parseInt(number.value.trim());
     
-    // sommo i due valori
-    const sum = nRandom + userNumber;
-    // stabilisco se la somma è pari o dispari
-    const message= getEvenOrOdd(sum);
-    console.log(message);
+    
+    if(isNaN(userNumber) || (userNumber < 1) || (userNumber > 5) ){
+        alert('inserisci caratteri validi');
+    } else{
+        // genero numero random
+        const nRandom = randomNumber();
 
-    // dichiaro i vincitori
-
-    result.innerText = userChoise === message ? 'HAI VINTO!' : 'HAI PERSO!';
+        // sommo i due valori
+        const sum = nRandom + userNumber;
+        
+        // stabilisco se la somma è pari o dispari
+        const message= getEvenOrOdd(sum);
+        
+        // stampo in pagina
+        numberRandom.innerText = 'Numero Random: ' + nRandom;
+        result.innerText = userChoise === message ? 'HAI VINTO!' : 'HAI PERSO!';
+    }
+    
 });
