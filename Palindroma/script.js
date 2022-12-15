@@ -21,10 +21,6 @@ function isPalindroma(text){
     // restituisco valore
     return isPalindroma;  
 }
-/*
-const userWord = isPalindroma('osso'); 
-console.log(userWord);
-*/
 
 //* Prendo elementi dal DOM
 const form = document.getElementById('my-form');
